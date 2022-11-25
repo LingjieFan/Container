@@ -57,7 +57,65 @@ gcc -shared -fPIC -L ../lib ArrayList.o CircularArrayList.o DoubleLinkedList.o B
 ```
 ## Documentation
 
+### Quick start
 
+Here, we give an simple example of using ArrayList in Container.
+
+1. Create an ArrayList object:
+
+```C
+ArrayList* array_list;
+
+array_list = ArrayList_New(Double);
+```
+
+where Double is the IObject interface of c basic type double. Double is defined in [Basic.h](https://github.com/LingjieFan/ObjectC/blob/main/src/Basic.h) and [Basic.c](https://github.com/LingjieFan/ObjectC/blob/main/src/Basic.c)
+
+2. Add items to the ArrayList:
+
+```C
+double item;
+
+item = 5;
+ArrayList_Add(array_list, &item);
+item = 4;
+ArrayList_Add(array_list, &item);
+```
+
+When a item is added into the ArrayList, ArrayList will create a deep copy in it.
+
+3. Remove items to the ArrayList:
+
+```C
+ArrayList_Remove(array_list, 0);
+```
+
+4. Insert items to the ArrayList:
+
+```C
+item = 3;
+ArrayList_Insert(array_list, 0, &item);
+```
+
+5. Get the size of ArrayList:
+
+```C
+int size;
+
+size = ArrayList_Size(array_list);
+```
+
+6. Get the item in ArrayList:
+
+```C
+item = *(double*)ArrayList_Get(array_list, 1);
+```
+
+7. Delete ArrayList:
+
+```C
+ArrayList_Del(array_list);
+```
 
 ## Contact us
 
