@@ -59,7 +59,7 @@ gcc -shared -fPIC -L ../lib ArrayList.o CircularArrayList.o DoubleLinkedList.o B
 
 ### Quick start
 
-Here, we give an simple example of using ArrayList in Container.
+Here, we give a simple example of using ArrayList in Container.
 
 1. Create an ArrayList object:
 
@@ -69,7 +69,7 @@ ArrayList* array_list;
 array_list = ArrayList_New(Double);
 ```
 
-where Double is the IObject interface of c basic type double. Double is defined in [Basic.h](https://github.com/LingjieFan/ObjectC/blob/main/src/Basic.h) and [Basic.c](https://github.com/LingjieFan/ObjectC/blob/main/src/Basic.c)
+where Double is the IObject interface of c basic type double. Double is defined in [Basic.h](https://github.com/LingjieFan/ObjectC/blob/main/src/Basic.h) and [Basic.c](https://github.com/LingjieFan/ObjectC/blob/main/src/Basic.c).
 
 2. Add items to the ArrayList:
 
@@ -115,6 +115,40 @@ item = *(double*)ArrayList_Get(array_list, 1);
 
 ```C
 ArrayList_Del(array_list);
+```
+
+### Generics
+
+Thanks to IObject interface in ObjectC, the data structures in Containers can be used for object having IObject interface. For basic type in C, such as ** double **, ** float **, ** int **, ** double complex **, we give their IObject interface in [Basic.h](https://github.com/LingjieFan/ObjectC/blob/main/src/Basic.h) and [Basic.c](https://github.com/LingjieFan/ObjectC/blob/main/src/Basic.c).
+
+If you want to create a new class, whose object could be added into data structures in Containers, the new class must inherit Object class, and implement IObject interface:
+
+```C
+typedef struct _NewClass NewClass;
+
+struct _NewClass
+{
+    Class* class;
+    IObject* iObject;
+    //... other members in the structures
+};
+```
+
+and using a C function to expose its IObject interface
+
+```C
+IObject* NewClass_GetIObject(NewClass* this)
+{
+    return this->iObject;
+}
+```
+
+Then ArrayList in Container accepts its IObject and create a ArrayList for NewClass
+
+```C
+ArrayList* array_list;
+
+array_list = ArrayList_New(NewClass_GetIObject(new_class));
 ```
 
 ## Contact us
