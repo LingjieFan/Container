@@ -134,7 +134,7 @@ struct _NewClass
 };
 ```
 
-and using a C function to expose its IObject interface
+And a C function is used to expose its IObject interface
 
 ```C
 IObject* NewClass_GetIObject(NewClass* this)
