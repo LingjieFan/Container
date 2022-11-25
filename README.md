@@ -119,7 +119,7 @@ ArrayList_Del(array_list);
 
 ### Generics
 
-Thanks to IObject interface in ObjectC, the data structures in Containers can be used for object having IObject interface. For basic type in C, such as ** double **, ** float **, ** int **, ** double complex **, we give their IObject interface in [Basic.h](https://github.com/LingjieFan/ObjectC/blob/main/src/Basic.h) and [Basic.c](https://github.com/LingjieFan/ObjectC/blob/main/src/Basic.c).
+Thanks to IObject interface in ObjectC, the data structures in Containers can be used for object having IObject interface. For basic type in C, such as **double**, **float**, **int**, **double complex**, we give their IObject interface in [Basic.h](https://github.com/LingjieFan/ObjectC/blob/main/src/Basic.h) and [Basic.c](https://github.com/LingjieFan/ObjectC/blob/main/src/Basic.c).
 
 If you want to create a new class, whose object could be added into data structures in Containers, the new class must inherit Object class, and implement IObject interface:
 
